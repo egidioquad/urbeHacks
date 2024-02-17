@@ -39,7 +39,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Fundraising: {
-      address: "0xccA9728291bC98ff4F97EF57Be3466227b0eb06C",
+      address: "0x6e8bA20Ad53d8bD6bc1D71FA8B9603c4Ee4F9d7B",
       abi: [
         {
           inputs: [
@@ -368,6 +368,56 @@ const deployedContracts = {
               internalType: "uint256",
               name: "",
               type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getCampaigns",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "creator",
+                  type: "address",
+                },
+                {
+                  internalType: "string",
+                  name: "ipfs",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "club",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "goalAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "currentAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bool",
+                  name: "finalized",
+                  type: "bool",
+                },
+                {
+                  internalType: "uint256",
+                  name: "endCampaign",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct Fundraising.Campaign[]",
+              name: "",
+              type: "tuple[]",
             },
           ],
           stateMutability: "view",

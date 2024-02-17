@@ -108,6 +108,10 @@ contract Fundraising {
         return fundToken.balanceOf(test);
     }
 
+    function getCampaigns() external view returns (Campaign[] memory) {
+        return campaigns;
+    }
+
     function switchStableCoin(address _newStableCoin) public {
         require(msg.sender == owner, "Only the owner can change the stable coin");
         stablecoin = ERC20(_newStableCoin);
