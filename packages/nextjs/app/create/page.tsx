@@ -23,7 +23,7 @@ const Create: NextPage = () => {
   const { writeAsync } = useScaffoldContractWrite({
     contractName: "Fundraising",
     functionName: "createCampaign",
-    args: [title, club, goalAmount],
+    args: [title, club, BigInt(goalAmount), BigInt(0)],
     onBlockConfirmation: txnReceipt => {
       console.log("📦 Transaction blockHash", txnReceipt.blockHash);
       setIsLoading(false);
