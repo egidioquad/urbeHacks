@@ -91,8 +91,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ campaign, index }) => 
           pad="small"
           margin={{ bottom: "medium" }}
         >
-          <Box pad="small" width={{ max: "80%" }}>
-            <Image src="/42Clubs/42BDE.png" fit="contain" />
+          <Box pad="small" align="center">
+            <Image src="/42Hack/42BDE.png" fit="contain" />
           </Box>
           <Box align="center" pad="small">
             <h1>{campaign.title}</h1>
