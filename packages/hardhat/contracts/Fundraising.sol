@@ -56,7 +56,7 @@ contract Fundraising {
         require(_campaignId < campaigns.length, "Campaign does not exist");
         require(!campaigns[_campaignId].finalized, "Campaign is already finalized");
         require(stablecoin.balanceOf(msg.sender) >= contributionAmount, "Insufficient balance");        
-        require(campaigns[_campaignId].endCampaign < block.timestamp, "The campaign has ended");
+        require(campaigns[_campaignId].endCampaign > block.timestamp, "The campaign has ended");
 
         require(stablecoin.transferFrom(msg.sender, address(this), contributionAmount), "Stablecoin transfer failed");
         campaigns[_campaignId].currentAmount += contributionAmount;
