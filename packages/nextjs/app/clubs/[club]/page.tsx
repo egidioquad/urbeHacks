@@ -34,7 +34,7 @@ const CampaignBox: React.FC<CampaignBoxProps> = ({ index, campaign }) => {
   const { writeAsync: approve } = useScaffoldContractWrite({
     contractName: "StableCoin",
     functionName: "approve",
-    args: [fundRaisingAddress, BigInt(amount)],
+    args: [fundRaisingAddress, BigInt(Math.pow(Number(amount), 18))],
     onBlockConfirmation: txnReceipt => {
       console.log("📦 Transaction blockHash", txnReceipt.blockHash);
     },
@@ -50,34 +50,6 @@ const CampaignBox: React.FC<CampaignBoxProps> = ({ index, campaign }) => {
   });
 
   return (
-    /*  <Box border={{ color: "brand", size: "small" }} pad="medium" margin={{ bottom: "medium" }}>
-      <h1 className="text-lg">Creator: {campaign.creator}</h1>
-      <h1 className="text-lg">IPFS: {campaign.ipfs}</h1>
-      <h1 className="text-lg">Club: {campaign.club}</h1>
-      <h1 className="text-lg">Goal Amount: {campaign.goalAmount.toString()}</h1>
-      <h1 className="text-lg">Current Amount: {campaign.currentAmount.toString()}</h1>
-      <h1 className="text-lg">Finalized: {campaign.finalized ? "Yes" : "No"}</h1>
-      <h1 className="text-lg">Title: {campaign.title}</h1>
-      <h1 className="text-lg">Description: {campaign.description}</h1>
-      <h1 className="text-lg">End Campaign: {campaign.endCampaign.toString()}</h1>
-
-      {!campaign.finalized && (
-        <>
-          <InputBase name="Enter amount" value={amount} onChange={setAmount} />
-          <Button
-            label="Contribute ;-)"
-            onClick={async () => {
-              await approve();
-              await contributeFr();
-              setResult(`Function executed with amount: ${amount}`);
-            }}
-          />
-        </>
-      )}
-
-      {result && <p>{result}</p>}
-    </Box> */
-
     <Box pad="large" margin={{ horizontal: "medium" }}>
       <Box direction="row" background="#D9D9D9" justify="between" round="medium" width="900px">
         <Box
@@ -126,7 +98,8 @@ const CampaignBox: React.FC<CampaignBoxProps> = ({ index, campaign }) => {
             </Box>
             {!campaign.finalized && (
               <>
-                <Box pad="small" width={{ max: "70%" }} align="center">
+                <Box pad="small" align="center">
+                  <h1 className="text-small ">Contribution amount in $</h1>
                   <InputBase name="Enter amount" value={amount} onChange={setAmount} />
                 </Box>
 
@@ -137,7 +110,6 @@ const CampaignBox: React.FC<CampaignBoxProps> = ({ index, campaign }) => {
                   onClick={async () => {
                     await approve();
                     await contributeFr();
-                    setResult(`Function executed with amount: ${amount}`);
                   }}
                 />
               </>
@@ -200,7 +172,7 @@ const ClubPage: NextPage = () => {
             <Image src={`/42Hack/${club}.png`} fit="contain" width="30%" className="rounded-full" />
           </Box>
         </Box>
-        <Box width={{ max: "50%" }} justify="center" pad="medium">
+        <Box width={{ max: "50%" }} justify="center" gap="medium" pad="medium">
           {/*  */}
           <h1 className="text-xl text-black ">About {club}</h1>
           {club === "42book" && (
@@ -226,6 +198,15 @@ const ClubPage: NextPage = () => {
                 The ideal place for aspiring game developers. In this club, students will have the opportunity to
                 cultivate their skills and carry out creative projects. Come out to us to explore the world of the video
                 game industry and turn your ideas into interactive experiences.
+              </h1>
+            </Box>
+          )}
+          {club === "42talk" && (
+            <Box gap="small">
+              <h1 className=" text-black  leading-2">
+                Our club is an incubator of voices and stories, providing a welcoming environment to explore new topics
+                and create engaging audio content. We organize recording sessions, live events, and workshops to inspire
+                creativity and idea sharing through podcasting.
               </h1>
             </Box>
           )}
@@ -311,7 +292,9 @@ const ClubPage: NextPage = () => {
             <CampaignBox key={index} index={index} campaign={campaign} />
           ))
         ) : (
-          <h1>No campaigns yet.</h1>
+          <Box pad="large" margin="large">
+            <h1>No campaigns yet.</h1>
+          </Box>
         )}
       </Grid>
     </Box>

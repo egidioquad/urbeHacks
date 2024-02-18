@@ -4,7 +4,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import LandingPage from "../utilComponents/landingPage";
-import { Box, Grid, Image, Meter } from "grommet";
+import { Box, Button, Grid, Image, Meter } from "grommet";
 import { Grommet } from "grommet";
 import type { NextPage } from "next";
 import { set } from "nprogress";
@@ -163,6 +163,20 @@ const UnifiedPage: NextPage = () => {
             )}
           </Grid>
         </Box>
+        <Box align="center">
+          <Button
+            label="All Campaigns"
+            size="medium"
+            primary
+            color="#a3e635"
+            onClick={() => {
+              window.location.href = "/projects";
+            }}
+          />
+        </Box>
+      </Box>
+      <Box width="full" background="#a3e635">
+        <Image src="42Hack/footer.png" fit="cover" />
       </Box>
     </Grommet>
   );

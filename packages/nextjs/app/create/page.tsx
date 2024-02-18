@@ -111,7 +111,7 @@ const Create: NextPage = () => {
             <InputBase name="Project Description" value={description} onChange={setDescription} />
           </Box>
           <Box align="start">
-            <h1>Goal Amount</h1>
+            <h1>Goal Amount in $</h1>
             <InputBase name="goalAmount" value={goalAmount} onChange={value => setGoalAmount(value)} />
             {error && <p className="text-red-600">Please enter a valid number</p>}
           </Box>
