@@ -3,7 +3,6 @@ import { Button } from "grommet";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
-import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 
 export const Footer = () => {
   const { writeAsync } = useScaffoldContractWrite({
