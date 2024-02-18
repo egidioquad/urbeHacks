@@ -1,6 +1,7 @@
 // Import necessary components and icons
 import Link from "next/link";
-import { Box, Text } from "grommet";
+import LandingPage from "../utilComponents/landingPage";
+import { Box, Grid, Image } from "grommet";
 import { Grommet } from "grommet";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
@@ -18,23 +19,31 @@ const UnifiedPage: NextPage = () => {
 
   return (
     <Grommet full>
-      <Box margin="large">
-        <h1>Main Page</h1>
-        {/* Navigation links */}
-        <ul>
-          <li>
-            <Link href="/home">Home</Link>
-          </li>
-          {/* Dynamically render club links using map */}
-          {clubs.map(club => (
-            <li key={club.id}>
-              <Link href={`/clubs/${club.id}`}>{`Club: ${club.name}`}</Link>
-            </li>
-          ))}
-        </ul>
+      <Box background="#a3e635" height="full">
+        <LandingPage />
+        <Box>
+          <Box align="center">
+            <h1>OUR CLUBS</h1>
+          </Box>
+          <Box></Box>
+        </Box>
       </Box>
     </Grommet>
   );
 };
 
 export default UnifiedPage; // Export the unified component
+
+/* <h1>Main Page</h1>
+        {/* Navigation links *
+        <ul>
+          <li>
+            <Link href="/home">Home</Link>
+          </li>
+          {/* Dynamically render club links using map 
+          {clubs.map(club => (
+            <li key={club.id}>
+              <Link href={`/clubs/${club.id}`}>{`Club: ${club.name}`}</Link>
+            </li>
+          ))}
+        </ul> */
