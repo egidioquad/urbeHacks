@@ -33,10 +33,7 @@ export const Footer = () => {
 
   useEffect(() => {
     if (amount) {
-      setUsdt(amount.toString());
-    }
-    if (token) {
-      setToken42(token.toString());
+      setToken(amount.toString());
     }
   }, [amount, token]);
 

@@ -77,8 +77,8 @@ contract Fundraising {
         require(!campaign.finalized, "Campaign is already finalized");
         require(stablecoin.transfer(campaign.creator, campaign.currentAmount), "Stablecoin grant failed");
         campaigns[_campaignId].finalized = true;
-
         emit CampaignFinalized(_campaignId, msg.sender, campaign.ipfs, campaign.currentAmount);
+
     }
 
     function getAllCampaignsByClub(string memory _club) external view returns (Campaign[] memory) {
