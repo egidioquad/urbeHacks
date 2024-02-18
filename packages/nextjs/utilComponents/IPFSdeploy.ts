@@ -1,6 +1,6 @@
 import { create } from "ipfs-http-client";
 
-const ipfs = create({ host: "localhost", port: 5001, protocol: "http" });
+const ipfs = create({ host: "localhost", port: 8080, protocol: "http" });
 
 export const UploadJsonToIPFS = async (jsonObject: any) => {
   const jsonBuffer = Buffer.from(JSON.stringify(jsonObject));
