@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Box } from "grommet";
 import type { NextPage } from "next";
 import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
