@@ -1,15 +1,11 @@
 import React from "react";
 import { Button } from "grommet";
-import { hardhat } from "viem/chains";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
-import { useGlobalState } from "~~/services/store/store";
 
 export const Footer = () => {
-  const { targetNetwork } = useTargetNetwork();
-
   const { writeAsync } = useScaffoldContractWrite({
     contractName: "StableCoin",
     functionName: "mint",
