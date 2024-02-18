@@ -55,11 +55,11 @@ export const Footer = () => {
             )}
           </div>
         </div>
-        <div className="fixed flex justify-between items-center w-full z-10 p-4 bottom-0 left-0 pointer-events-none">
+        <div className="fixed flex justify-between items-center w-full z-10 p-4 bottom-0 right-0 pointer-events-none">
           <div className="flex flex-col md:flex-row gap-2 pointer-events-auto">
             {token42 && (
               <Box border={{ color: "#a3e635", size: "small" }} round="medium" pad="small">
-                <h1>💰 ${token42}</h1>
+                <h1>42Token Balance ${token42}</h1>
               </Box>
             )}
           </div>
