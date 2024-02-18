@@ -39,7 +39,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Fundraising: {
-      address: "0x6e8bA20Ad53d8bD6bc1D71FA8B9603c4Ee4F9d7B",
+      address: "0xD45DC1c313d2E4381FC075F192DC248551d8Da99",
       abi: [
         {
           inputs: [
