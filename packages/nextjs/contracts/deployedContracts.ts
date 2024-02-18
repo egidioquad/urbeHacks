@@ -6,38 +6,6 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
   421614: {
-    ButtonContract: {
-      address: "0xdb54fa574a3e8c6aC784e1a5cdB575A737622CFf",
-      abi: [
-        {
-          inputs: [],
-          name: "value",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "_newValue",
-              type: "uint256",
-            },
-          ],
-          name: "writeValue",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-      ],
-      inheritedFunctions: {},
-    },
     Fundraising: {
       address: "0x6e8bA20Ad53d8bD6bc1D71FA8B9603c4Ee4F9d7B",
       abi: [
