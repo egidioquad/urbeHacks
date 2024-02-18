@@ -7,7 +7,7 @@ import { Address } from "~~/components/scaffold-eth";
 import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 import { GetFileFromIpfs } from "~~/utilComponents/IPFSdeploy";
 
-interface Campaign {
+export interface Campaign {
   creator: string;
   ipfs: string;
   club: string;
@@ -16,7 +16,7 @@ interface Campaign {
   finalized: boolean;
   endCampaign: bigint;
 }
-interface ExtendedCampaign extends Campaign {
+export interface ExtendedCampaign extends Campaign {
   description: string;
   title: string;
 }
@@ -62,7 +62,7 @@ const Projects: NextPage = () => {
         {campaigns && campaigns.length > 0 ? (
           campaigns.map((campaign: Campaign, index: number) => (
             <Box>
-              <ProjectCard campaign={campaignsAll[index]} index={index} />
+              <ProjectCard campaign={campaignsAll[index]} />
             </Box>
           ))
         ) : (
@@ -77,10 +77,9 @@ export default Projects;
 
 interface ProjectCardProps {
   campaign: ExtendedCampaign;
-  index: number; // Add index prop
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ campaign, index }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ campaign }) => {
   return (
     <Box>
       {campaign && (
