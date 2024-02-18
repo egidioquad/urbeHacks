@@ -47,21 +47,12 @@ export const Footer = () => {
           <div className="flex flex-col md:flex-row gap-2 pointer-events-auto">
             <div>
               <Button size="medium" primary color="#a3e635" label="💸 Get USDT" onClick={() => writeAsync()} />
+              {token42 && (
+                <Box border={{ color: "#a3e635", size: "small" }} round="medium" pad="small">
+                  <h1>42Token Balance ${token42}</h1>
+                </Box>
+              )}
             </div>
-            {usdt && (
-              <Box border={{ color: "#a3e635", size: "small" }} round="medium" pad="small">
-                <h1>💰 ${usdt}</h1>
-              </Box>
-            )}
-          </div>
-        </div>
-        <div className="fixed flex justify-between items-center w-full z-10 p-4 bottom-0 right-0 pointer-events-none">
-          <div className="flex flex-col md:flex-row gap-2 pointer-events-auto">
-            {token42 && (
-              <Box border={{ color: "#a3e635", size: "small" }} round="medium" pad="small">
-                <h1>42Token Balance ${token42}</h1>
-              </Box>
-            )}
           </div>
         </div>
       </div>
