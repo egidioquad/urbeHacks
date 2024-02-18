@@ -150,7 +150,7 @@ const UnifiedPage: NextPage = () => {
         <Box align="center">
           <h1 className="text-xl text-black">TOP CAMPAIGNS</h1>
         </Box>
-        <Box margin="medium">
+        <Box margin="medium" align="center">
           <Grid columns={["1/3", "1/3", "1/3"]} gap="small">
             {topCampaigns && topCampaigns.length > 0 ? (
               topCampaigns.map((campaign: ExtendedCampaign, index: number) => (
@@ -175,8 +175,8 @@ const UnifiedPage: NextPage = () => {
           />
         </Box>
       </Box>
-      <Box width="full" background="#a3e635">
-        <Image src="42Hack/footer.png" fit="cover" />
+      <Box width="full" pad={{ vertical: "xl" }} background="#a3e635">
+        <Image src="42Hack/footer.png" fit="contain" />
       </Box>
     </Grommet>
   );

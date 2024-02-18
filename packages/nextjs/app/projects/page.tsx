@@ -120,25 +120,3 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ campaign }) => {
     </Box>
   );
 };
-
-/*  <Box
-            key={index}
-            border={{ color: "#a3e635", size: "small" }}
-            round="medium"
-            pad="medium"
-            margin={{ bottom: "medium" }}
-          >
-            {campaignsAll[index] && <h1 className="text-lg">Title: {campaignsAll[index].title}</h1>}
-            {campaignsAll[index] && <h1 className="text-lg">Description: {campaignsAll[index].description}</h1>}
-            <Box direction="row" gap="small">
-              <h1 className="text-lg">Created by:</h1>
-              <Address address={campaign.creator} />
-            </Box>
-            <h1 className="text-lg">IPFS: {campaign.ipfs}</h1>
-            <h1 className="text-lg">Club: {campaign.club}</h1>
-            <h1 className="text-lg">Goal Amount: {campaign.goalAmount.toString()}</h1>
-            {/* Convert bigint to string for display 
-            <h1 className="text-lg">Current Amount: {campaign.currentAmount.toString()}</h1>
-            <h1 className="text-lg">Finalized: {campaign.finalized ? "Yes" : "No"}</h1>
-            <h1 className="text-lg">End Campaign: {campaign.endCampaign.toString()}</h1>
-          </Box> */

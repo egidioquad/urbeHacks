@@ -101,6 +101,9 @@ const CampaignBox: React.FC<CampaignBoxProps> = ({ index, campaign }) => {
                 <Box pad="small" align="center">
                   <h1 className="text-small ">Contribution amount in $</h1>
                   <InputBase name="Enter amount" value={amount} onChange={setAmount} />
+                  <h1 className="text-xsmall leading-3 mt-2 ">
+                    You will get 20% of your contribution back in T42 tokens
+                  </h1>
                 </Box>
 
                 <Button
@@ -177,7 +180,7 @@ const ClubPage: NextPage = () => {
           <h1 className="text-xl text-black ">About {club}</h1>
           {club === "42book" && (
             <Box gap="small">
-              <h1 className=" text-black leading-2">
+              <h1 className=" text-black leading-4">
                 The club organizes events such as reading sessions, meetings with authors, visits to local bookstores,
                 and book exchanges. A great place to explore new titles and connect with other reading lovers.{" "}
               </h1>
@@ -185,7 +188,7 @@ const ClubPage: NextPage = () => {
           )}
           {club === "42activities" && (
             <Box gap="small">
-              <h1 className=" text-black  leading-2">
+              <h1 className=" text-black  leading-4">
                 The club offers students a variety of exciting experiences outside the classroom. We organize field
                 trips, museum visits, sports activities, special events and happy hours to promote physical and mental
                 well-being. Join us to create unforgettable memories.
@@ -194,7 +197,7 @@ const ClubPage: NextPage = () => {
           )}
           {club === "42spaghetti" && (
             <Box gap="small">
-              <h1 className=" text-black  leading-2">
+              <h1 className=" text-black  leading-4">
                 The ideal place for aspiring game developers. In this club, students will have the opportunity to
                 cultivate their skills and carry out creative projects. Come out to us to explore the world of the video
                 game industry and turn your ideas into interactive experiences.
@@ -203,7 +206,7 @@ const ClubPage: NextPage = () => {
           )}
           {club === "42talk" && (
             <Box gap="small">
-              <h1 className=" text-black  leading-2">
+              <h1 className=" text-black  leading-4">
                 Our club is an incubator of voices and stories, providing a welcoming environment to explore new topics
                 and create engaging audio content. We organize recording sessions, live events, and workshops to inspire
                 creativity and idea sharing through podcasting.
@@ -212,7 +215,7 @@ const ClubPage: NextPage = () => {
           )}
           {club === "42startup" && (
             <Box gap="small">
-              <h1 className=" text-black  leading-2">
+              <h1 className=" text-black  leading-4">
                 Our club is an incubator of innovative ideas and a meeting place for aspiring entrepreneurs. We offer
                 support, networking and resources to help startups grow and thrive in the entrepreneurial ecosystem.
               </h1>
@@ -220,7 +223,7 @@ const ClubPage: NextPage = () => {
           )}
           {club === "42cybersecurity" && (
             <Box gap="small">
-              <h1 className=" text-black  leading-2">
+              <h1 className=" text-black  leading-4">
                 Our club is a meeting place for enthusiasts and professionals eager to learn more about knowledge and
                 practices in the field of cybersecurity. We offer workshops, conferences and resources to address the
                 challenges of data protection in the digital world. We also participate in national competitions in the
@@ -230,7 +233,7 @@ const ClubPage: NextPage = () => {
           )}
           {club === "42music" && (
             <Box gap="small">
-              <h1 className=" text-black  leading-2">
+              <h1 className=" text-black  leading-4">
                 Our club is the perfect place to explore, create and share the magic of music. We offer jam sessions,
                 live events, workshops, performance spaces and collaborations for enthusiasts and musicians of all
                 levels.
@@ -239,7 +242,7 @@ const ClubPage: NextPage = () => {
           )}
           {club === "42pingpong" && (
             <Box gap="small">
-              <h1 className=" text-black  leading-2">
+              <h1 className=" text-black  leading-4">
                 the club is a gathering place for lovers of this exciting sport. We offer game sessions, friendly
                 tournaments and coaching to promote passion and skill in pin pong, creating a fun and inclusive
                 environment for all levels of players.
@@ -248,7 +251,7 @@ const ClubPage: NextPage = () => {
           )}
           {club === "42ciak" && (
             <Box gap="small">
-              <h1 className=" text-black  leading-2">
+              <h1 className=" text-black  leading-4">
                 Our club is the ideal haven for film enthusiasts, offering screenings, discussions and special events to
                 explore the world of filmmaking. Join us to discover masterpieces, share opinions, and cultivate your
                 passion for film.
@@ -257,7 +260,7 @@ const ClubPage: NextPage = () => {
           )}
           {club === "42freelance" && (
             <Box gap="small">
-              <h1 className=" text-black  leading-2">
+              <h1 className=" text-black  leading-4">
                 Our club is a hub of resources and connections for independent professionals seeking opportunities and
                 support. We hold networking events, share resources and offer consultations to help freelancers improve
                 in their career path.
@@ -266,7 +269,7 @@ const ClubPage: NextPage = () => {
           )}
           {club === "42gaming" && (
             <Box gap="small">
-              <h1 className=" text-black  leading-2">
+              <h1 className=" text-black  leading-4">
                 Our club is the perfect place for gaming enthusiasts, offering tornerà, social gaming sessions and
                 special events to connect players. Join us for unforgettable gaming experiences and create lasting
                 community connections.
@@ -275,7 +278,7 @@ const ClubPage: NextPage = () => {
           )}
           {club === "42BDE" && (
             <Box gap="small">
-              <h1 className=" text-black  leading-2">
+              <h1 className=" text-black  leading-4">
                 Our club offers unique experiences through a wide range of indoor and outdoor events. With creative
                 organization and dedication, we create unforgettable moments that unite people, inspire and celebrate
                 the diversity of our community.

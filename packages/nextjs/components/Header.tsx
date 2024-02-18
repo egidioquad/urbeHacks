@@ -5,13 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Box } from "grommet";
+import { useAccount } from "wagmi";
+import { getAccount } from "wagmi/dist/actions";
 import { Bars3Icon, BugAntIcon, MagnifyingGlassIcon, StarIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
-import { useAccount } from "wagmi";
-import { getAccount } from "wagmi/dist/actions";
-
 
 type HeaderMenuLink = {
   label: string;
@@ -76,11 +75,11 @@ export const Header = () => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const account = useAccount();
 
-  const { data: amount } = useScaffoldContractRead({
+  /*   const { data: amount } = useScaffoldContractRead({
     contractName: "Fundraising",
     functionName: "getFundToken",
-    args: [account.address]
-  });
+    args: [account.address],
+  }); */
 
   useOutsideClick(
     burgerMenuRef,
@@ -127,9 +126,7 @@ export const Header = () => {
         </ul>
       </div>
       <div className="navbar-end flex-grow flex items-center">
-        <div>
-          Fund Amount token: {amount !== undefined ? String(amount) : '0'}
-        </div>
+        {/* <div>: {amount !== undefined ? String(amount) : "0"}</div> */}
         <div className="mr-4">
           <RainbowKitCustomConnectButton />
         </div>

@@ -1,8 +1,9 @@
-import React from "react";
-import { Button } from "grommet";
+import React, { useEffect, useState } from "react";
+import { Box, Button } from "grommet";
+import { useAccount } from "wagmi";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
-import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 export const Footer = () => {
   const { writeAsync } = useScaffoldContractWrite({
@@ -14,17 +15,54 @@ export const Footer = () => {
     },
   });
 
+  const [usdt, setUsdt] = useState("");
+  const [token42, setToken42] = useState("");
+  const account = useAccount();
+
+  const { data: amount } = useScaffoldContractRead({
+    contractName: "StableCoin",
+    functionName: "balanceOf",
+    args: [account.address],
+  });
+
+  const { data: token } = useScaffoldContractRead({
+    contractName: "Fundraising",
+    functionName: "getFundToken",
+    args: [account.address],
+  });
+
+  useEffect(() => {
+    if (amount) {
+      setUsdt(amount.toString());
+    }
+    if (token) {
+      setToken42(token.toString());
+    }
+  }, [amount, token]);
+
   return (
     <div className="min-h-0 py-5 px-1 mb-11 lg:mb-0">
       <div>
         <div className="fixed flex justify-between items-center w-full z-10 p-4 bottom-0 left-0 pointer-events-none">
           <div className="flex flex-col md:flex-row gap-2 pointer-events-auto">
             <div>
-              <Button size="large" label="💸 Get USDT" onClick={() => writeAsync()}></Button>
+              <Button size="medium" primary color="#a3e635" label="💸 Get USDT" onClick={() => writeAsync()} />
             </div>
+            {usdt && (
+              <Box border={{ color: "#a3e635", size: "small" }} round="medium" pad="small">
+                <h1>💰 ${usdt}</h1>
+              </Box>
+            )}
           </div>
-          {/*           <SwitchTheme className={`pointer-events-auto ${isLocalNetwork ? "self-end md:self-auto" : ""}`} />{" "}
-           */}{" "}
+        </div>
+        <div className="fixed flex justify-between items-center w-full z-10 p-4 bottom-0 left-0 pointer-events-none">
+          <div className="flex flex-col md:flex-row gap-2 pointer-events-auto">
+            {token42 && (
+              <Box border={{ color: "#a3e635", size: "small" }} round="medium" pad="small">
+                <h1>💰 ${token42}</h1>
+              </Box>
+            )}
+          </div>
         </div>
       </div>
       <div className="w-full">
