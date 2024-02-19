@@ -12,7 +12,6 @@ The contributions are handled with a custom token that represents a stable coin,
 
 
 
-
 ---------------------------!TECH STACK!----------------------------------------------
 Built using ScaffoldETH components and the set of tools it offers. 
 Deployed on the Arbitrum Sepolia chain
@@ -20,3 +19,4 @@ Deployed on the Arbitrum Sepolia chain
 
 Team @ppezzul @andreeadm @egidioquad
  
+Fundraising contract address -> 0xf00A9373Cd54Fd060CD31B81c21611558aE352ec
