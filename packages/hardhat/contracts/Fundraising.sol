@@ -20,7 +20,6 @@ contract Fundraising {
         uint256 endCampaign;
     }
 
-    mapping(uint256 => mapping(address => uint256)) public contributions;
     Campaign[] public campaigns;
     ERC20 public fundToken;
     ERC20 public stablecoin;
@@ -104,8 +103,8 @@ contract Fundraising {
         return campaigns.length;
     }
 
-    function getFundToken(address test) external view returns (uint256) {
-        return fundToken.balanceOf(test);
+    function getFundToken(address contributer) external view returns (uint256) {
+        return fundToken.balanceOf(contributer);
     }
 
     function getCampaigns() external view returns (Campaign[] memory) {
