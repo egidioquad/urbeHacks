@@ -12,16 +12,16 @@ const imageUrl = `${baseUrl}/thumbnail.jpg`;
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Urbe Hacks",
-    template: "%s | Urbe Hacks",
+    default: "42 Care",
+    template: "%s | 42 Care",
   },
-  description: "Built with 🏗 Urbe Hacks",
+  description: "Built with 🏗 42 Care",
   openGraph: {
     title: {
-      default: "Urbe Hacks",
-      template: "%s | Urbe Hacks",
+      default: "42 Care",
+      template: "%s | 42 Care",
     },
-    description: "Built with 🏗 Urbe Hacks",
+    description: "Built with 🏗 42 Care",
     images: [
       {
         url: imageUrl,
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: [imageUrl],
     title: {
-      default: "Urbe Hacks",
-      template: "%s | Urbe Hacks",
+      default: "42 Care",
+      template: "%s | 42 Care",
     },
-    description: "Built with 🏗 Urbe Hacks",
+    description: "Built with 🏗 scaffold eth",
   },
   icons: {
-    icon: [{ url: "/favicon.png", sizes: "32x32", type: "image/png" }],
+    icon: [{ url: "/logo.png", sizes: "32x32", type: "image/png" }],
   },
 };
 
