@@ -1,5 +1,5 @@
 export interface Campaign {
-  creator: string;
+  sender: string;
   ipfs: string;
   club: string;
   goalAmount: bigint; // Fix the type to bigint

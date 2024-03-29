@@ -11,7 +11,7 @@ contract FundToken is ERC20 {
 
 contract Fundraising {
     struct Campaign {
-        address creator;
+        address sender;
         string ipfs;
         string club;
         uint256 goalAmount;
@@ -20,14 +20,15 @@ contract Fundraising {
         uint256 endCampaign;
     }
 
+
     Campaign[] public campaigns;
     ERC20 public fundToken;
     ERC20 public stablecoin;
     address public owner;
 
-    event CampaignCreated(uint256 indexed campaignId, address indexed creator, string title, uint256 goalAmount);
+    event CampaignCreated(uint256 indexed campaignId, address indexed sender, string title, uint256 goalAmount);
     event ContributionMade(uint256 indexed campaignId, address indexed contributor);
-    event CampaignFinalized(uint256 indexed campaignId, address indexed creator, string title, uint256 totalAmount);
+    event CampaignFinalized(uint256 indexed campaignId, address indexed sender, string title, uint256 totalAmount);
     event GoalReached(uint256 indexed campaignId);
     event FundTokenTransferred(address indexed recipient, uint256 amount);
 
@@ -39,7 +40,7 @@ contract Fundraising {
 
     function createCampaign(string memory _ipfs, string memory _club, uint256 _goalAmount, uint256 _endCampaign) external {
         campaigns.push(Campaign({
-            creator: msg.sender,
+            sender: msg.sender,
             ipfs: _ipfs,
             club: _club,
             goalAmount: _goalAmount,
@@ -74,7 +75,7 @@ contract Fundraising {
     function finalizeCampaign(uint256 _campaignId) internal {
         Campaign memory campaign = campaigns[_campaignId];
         require(!campaign.finalized, "Campaign is already finalized");
-        require(stablecoin.transfer(campaign.creator, campaign.currentAmount), "Stablecoin grant failed");
+        require(stablecoin.transfer(campaign.sender, campaign.currentAmount), "Stablecoin grant failed");
         campaigns[_campaignId].finalized = true;
         emit CampaignFinalized(_campaignId, msg.sender, campaign.ipfs, campaign.currentAmount);
 

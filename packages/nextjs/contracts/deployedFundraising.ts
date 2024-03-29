@@ -32,7 +32,7 @@ const deployedContracts = {
             {
               indexed: true,
               internalType: "address",
-              name: "creator",
+              name: "sender",
               type: "address",
             },
             {
@@ -63,7 +63,7 @@ const deployedContracts = {
             {
               indexed: true,
               internalType: "address",
-              name: "creator",
+              name: "sender",
               type: "address",
             },
             {
@@ -145,7 +145,7 @@ const deployedContracts = {
           outputs: [
             {
               internalType: "address",
-              name: "creator",
+              name: "sender",
               type: "address",
             },
             {
@@ -286,7 +286,7 @@ const deployedContracts = {
               components: [
                 {
                   internalType: "address",
-                  name: "creator",
+                  name: "sender",
                   type: "address",
                 },
                 {
@@ -349,7 +349,7 @@ const deployedContracts = {
               components: [
                 {
                   internalType: "address",
-                  name: "creator",
+                  name: "sender",
                   type: "address",
                 },
                 {
