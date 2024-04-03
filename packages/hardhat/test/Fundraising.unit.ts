@@ -20,7 +20,7 @@ describe("Unit-Test", function () {
 
   const twoMonths = 60 * 60 * 24 * 30 * 2;
 
-  // Setup testing enviroment with various roles and contracts
+  // Setup testing enviroment
   before(async () => {
     accounts = await ethers.getSigners();
 
@@ -37,18 +37,19 @@ describe("Unit-Test", function () {
     stableCoinContractSubstitute = await stableCoinFactory.deploy();
     await stableCoinContractSubstitute.waitForDeployment();
 
-    // Deploy mock fundRaising contract
+    // Deploy fundRaising contract
     const fundraisingFactory = await ethers.getContractFactory("Fundraising");
-    fundraisingContract = await fundraisingFactory.deploy(stableCoinContract.getAddress(), {
-      from: fundraisingOwner.address,
-    });
+    fundraisingContract = await fundraisingFactory.deploy(
+      stableCoinContract.getAddress(), 
+      { from: fundraisingOwner.address,}
+    );
     await fundraisingContract.waitForDeployment();
 
-    // Contributer gets for himself 10000 USDC
+    // Contributer mints 10000 mock USDC
     await stableCoinContract.connect(contributer).mint(ethToWei(10000));
   });
 
-  it("Should mint 1000000 FundToken to itself", async function () {
+  it("Should mint 1000000 fundToken42 to itself", async function () {
     const tokenAmount = await fundraisingContract.getFundToken(fundraisingContract.getAddress());
     const expectedTokenAmount = ethToWei(1000000);
 
@@ -77,52 +78,17 @@ describe("Unit-Test", function () {
     expect(campaign.goalAmount).to.equal(goalAmount);
   });
 
-  it("Should finalize the campaign after 2 months", async function () {
-    // Get the campaign created in the previous test
-    const campaigns = await fundraisingContract.getCampaigns();
-    const campaign = campaigns[0];
-
-    // Ensure the campaign was created in the previous test
-    expect(campaign.sender).to.equal(campaignProposer);
-
-    // Go forward to 2 months later
-    await ethers.provider.send("evm_increaseTime", [twoMonths]);
-    await ethers.provider.send("evm_mine");
-
-    // Finalize all campaigns that have passed their deadline
-    await fundraisingContract.checkAndFinalizeCampaigns();
-
-    // Retrieve the finalized campaign
-    const finalizedCampaign = await fundraisingContract.campaigns(0);
-
-    // Expect the campaign to be finalized
-    expect(finalizedCampaign.finalized).to.equal(true);
-
-    // Try to contribute to the finalized campaign and expect it to revert
-    await expect(fundraisingContract.connect(contributer).contribute(0, ethToWei(100))).to.be.revertedWith(
-      "Campaign is already finalized",
-    );
-  });
-
   it("Should end campaign after reached goal", async function () {
-    const ipfs = "hash";
-    const club = "42test";
     const goalAmount = ethToWei(1000);
-
-    const currentTime = Math.floor(Date.now() / 1000);
-    const twoMonthsLater = currentTime + twoMonths * 100; // 2 months later
-
-    // Create the campaign
-    await fundraisingContract.connect(campaignProposer).createCampaign(ipfs, club, goalAmount, twoMonthsLater);
-
-    // Approve the contract to allowance
+    
+    // The contributer approves the contract to take the goalAmount
     await stableCoinContract.connect(contributer).approve(fundraisingContract.getAddress(), goalAmount);
 
-    // Contributer sends 1000 USDC
-    await fundraisingContract.connect(contributer).contribute(1, goalAmount);
+    // Contributer sends 1000 USDC to campaign 1
+    await fundraisingContract.connect(contributer).contribute(0, goalAmount);
 
     // Except to revert a try to contribute to a finalized campaign
-    await expect(fundraisingContract.connect(contributer).contribute(1, ethToWei(100))).to.be.revertedWith(
+    await expect(fundraisingContract.connect(contributer).contribute(0, ethToWei(100))).to.be.revertedWith(
       "Campaign is already finalized",
     );
 
@@ -132,23 +98,54 @@ describe("Unit-Test", function () {
     expect(campaigns[0].finalized).to.equal(true);
   });
 
-  it("Should send the USDC token to the campaign", async function () {
+  it("Should send the contribution to the campaign sender", async function () {
     // Testing if previous contribution returned 200 42-tokens to the contributor
+    expect(await stableCoinContract.balanceOf(campaignProposer)).to.equal(ethToWei(1000));
+  });
+
+  it("Should give back 20% of the contribution amount in 42 tokens", async function () {
+    // Testing if previous contribution of 1000 USDC returned 200 42-tokens to the contributor
     expect(await fundraisingContract.getFundToken(contributer)).to.equal(ethToWei(200));
   });
 
-  it("Should give back 20% of contribution amount in 42 tokens", async function () {
-    // Testing if previous contribution returned 200 42-tokens to the contributor
-    expect(await fundraisingContract.getFundToken(contributer)).to.equal(ethToWei(200));
+  it("Should finalize the campaign after 2 months", async function () {
+    const ipfs = "hash";
+    const club = "42test";
+    const goalAmount = ethToWei(1000);
+
+    const currentTime = Math.floor(Date.now() / 1000);
+    const twoMonthsLater = currentTime + twoMonths; // 2 months later
+
+    // Create the campaign
+    await fundraisingContract.connect(campaignProposer).createCampaign(ipfs, club, goalAmount, twoMonthsLater);
+
+    // Go forward to 2 months later
+    await ethers.provider.send("evm_increaseTime", [twoMonths]);
+    await ethers.provider.send("evm_mine");
+
+    // Finalize all campaigns that have passed their deadline
+    await fundraisingContract.checkAndFinalizeCampaigns();
+
+    // Retrieve the finalized campaign
+    const finalizedCampaign = await fundraisingContract.campaigns(1);
+
+    // Expect the campaign to be finalized
+    expect(finalizedCampaign.finalized).to.equal(true);
+
+    // Try to contribute to the finalized campaign and expect it to revert
+    await expect(fundraisingContract.connect(contributer).contribute(1, ethToWei(100))).to.be.revertedWith(
+      "Campaign is already finalized",
+    );
   });
 
-  it("Should switch stable coin only from the owner", async function () {
+  it("Should let only from the owner switch the stable coin of the contract", async function () {
     await expect(
       fundraisingContract.connect(contributer).switchStableCoin(stableCoinContractSubstitute.getAddress()),
     ).to.be.revertedWith("Only the owner can change the stable coin");
 
     expect(
-      await fundraisingContract.connect(fundraisingOwner).switchStableCoin(stableCoinContractSubstitute.getAddress()),
+      await fundraisingContract.connect(fundraisingOwner)
+      .switchStableCoin(stableCoinContractSubstitute.getAddress())
     );
   });
 });
