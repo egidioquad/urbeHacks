@@ -20,7 +20,6 @@ contract Fundraising {
         uint256 endCampaign;
     }
 
-
     Campaign[] public campaigns;
     ERC20 public fundToken;
     ERC20 public stablecoin;
