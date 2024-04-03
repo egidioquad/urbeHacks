@@ -3,8 +3,8 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract FundToken is ERC20 {
-    constructor() ERC20("FundToken", "FTK") {
+contract FundToken42 is ERC20 {
+    constructor() ERC20("FundToken42", "FTK") {
         _mint(msg.sender, 1000000 * (10 ** decimals()));
     }
 }
@@ -34,7 +34,7 @@ contract Fundraising {
 
     constructor(address _stableCoin) {
         owner = msg.sender;
-        fundToken = new FundToken();
+        fundToken = new FundToken42();
         stablecoin = ERC20(_stableCoin);
     }
 
@@ -68,7 +68,7 @@ contract Fundraising {
         }
 
         uint256 fundTokenAmount = contributionAmount / 100 * 20;
-        require(fundToken.transfer(msg.sender, fundTokenAmount),"FundToken transfer failed");
+        require(fundToken.transfer(msg.sender, fundTokenAmount),"FundToken42 transfer failed");
         emit FundTokenTransferred(msg.sender, fundTokenAmount);
     }
 
