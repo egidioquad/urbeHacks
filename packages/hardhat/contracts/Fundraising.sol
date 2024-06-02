@@ -11,6 +11,7 @@ contract FundToken42 is ERC20 {
 
 contract Fundraising {
     struct Campaign {
+        uint256 id;
         address sender;
         string ipfs;
         string club;
@@ -39,6 +40,7 @@ contract Fundraising {
 
     function createCampaign(string memory _ipfs, string memory _club, uint256 _goalAmount, uint256 _endCampaign) external {
         campaigns.push(Campaign({
+            id: campaigns.length,
             sender: msg.sender,
             ipfs: _ipfs,
             club: _club,
