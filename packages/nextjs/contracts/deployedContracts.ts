@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   421614: {
     Fundraising: {
-      address: "0xB9A1d60Ff32D50e7F187DD4b69952D2f8aE1c802",
+      address: "0x5d5d36C0bA6B8Bc7b90eB7Dbd03a87eBFCa58d80",
       abi: [
         {
           inputs: [
@@ -144,6 +144,11 @@ const deployedContracts = {
           name: "campaigns",
           outputs: [
             {
+              internalType: "uint256",
+              name: "id",
+              type: "uint256",
+            },
+            {
               internalType: "address",
               name: "sender",
               type: "address",
@@ -210,30 +215,6 @@ const deployedContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-            {
-              internalType: "address",
-              name: "",
-              type: "address",
-            },
-          ],
-          name: "contributions",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
               internalType: "string",
               name: "_ipfs",
               type: "string",
@@ -284,6 +265,11 @@ const deployedContracts = {
           outputs: [
             {
               components: [
+                {
+                  internalType: "uint256",
+                  name: "id",
+                  type: "uint256",
+                },
                 {
                   internalType: "address",
                   name: "sender",
@@ -348,6 +334,11 @@ const deployedContracts = {
             {
               components: [
                 {
+                  internalType: "uint256",
+                  name: "id",
+                  type: "uint256",
+                },
+                {
                   internalType: "address",
                   name: "sender",
                   type: "address",
@@ -395,7 +386,7 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "test",
+              name: "contributer",
               type: "address",
             },
           ],
@@ -465,7 +456,7 @@ const deployedContracts = {
       },
     },
     StableCoin: {
-      address: "0xDDa0648FA8c9cD593416EC37089C2a2E6060B45c",
+      address: "0xf9ABbBb65D3012d2b9C6f0bc19CaA989978348bE",
       abi: [
         {
           inputs: [],

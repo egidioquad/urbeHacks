@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Box, Grid } from "grommet";
 import type { NextPage } from "next";
-import ProjectCard from "~~/components/ProjectCard";
+import ProjectCard from "~~/components/42-Fund/ProjectCard";
 import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 import { Campaign, ExtendedCampaign } from "~~/types/campaignInterface";
 import { GetFileFromIpfs } from "~~/utils/IPFS_Tools";
@@ -57,7 +57,7 @@ const Projects: NextPage = () => {
           <h1>Loading...</h1>
         </Box>
       ) : (
-        <Grid columns={{ size: "medium" }} gap="small">
+        <Grid columns={{ size: "medium" }} gap="small" >
           {campaigns && campaigns.length > 0 ? (
             campaigns.map((campaign: Campaign, index: number) => (
               <Box key={index}>

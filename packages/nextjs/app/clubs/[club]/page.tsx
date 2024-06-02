@@ -13,7 +13,7 @@ import clubDescriptions from "~~/utils/clubDescriptions";
 const ClubPage: NextPage = () => {
   const pathParts = usePathname().split("/");
   const club = pathParts[pathParts.length - 1];
-
+  console.log(club)
   const { data: filteredCampaigns } = useScaffoldContractRead({
     contractName: "Fundraising",
     functionName: "getAllCampaignsByClub",
@@ -56,30 +56,34 @@ const ClubPage: NextPage = () => {
     <Box>
       <Box width="full" height="auto" background="#a3e635" direction="row" align="start">
         <Box pad="medium">
-          <Box>
-            <Image src={`/42Hack/${club}.png`} fit="contain" width="30%" style={{ borderRadius: 30 }} />
+          <Box align="start" margin={{ horizontal: "small" }}>
+            <Image 
+              src={`/42Hack/${club}.png`} 
+              fit="contain" width="27%" 
+              style={{ borderRadius: 30 }} 
+              margin={{ left: '5%' }} />
           </Box>
         </Box>
         <Box width={{ max: "50%" }} gap="medium" pad="medium">
-          <h1 className="text-xl text-black ">About {club}</h1>
+          <h1 className="text-xl text-white">About {club}</h1>
           {clubDescriptions[club] && (
             <Box gap="small">
-              <h1 className="text-black leading-4">{clubDescriptions[club]}</h1>
+              <h1 className="text-xl text-white leading-6">{clubDescriptions[club]}</h1>
             </Box>
           )}
         </Box>
       </Box>
-      <Grid columns={size === "large" ? ["1/2", "1/2"] : "large"}>
+      <Box height="100%" width="100%">
         {campaignsByClub && campaignsByClub.length > 0 ? (
           campaignsByClub.map((campaign: ExtendedCampaign, index: number) => (
-            <CampaignBox key={index} index={index} campaign={campaign} />
+            <CampaignBox campaign={campaign} />
           ))
         ) : (
           <Box pad="large" margin="large">
             <h1>No campaigns yet.</h1>
           </Box>
         )}
-      </Grid>
+      </Box>
     </Box>
   );
 };

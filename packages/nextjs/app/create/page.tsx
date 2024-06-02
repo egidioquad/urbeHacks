@@ -27,15 +27,9 @@ const Create: NextPage = () => {
     args: [ipfsHash, club, goalAmountInt, timelock],
     onBlockConfirmation: txnReceipt => {
       console.log("📦 Transaction blockHash", txnReceipt.blockHash);
+      window.location.reload();
     },
   });
-
-  const changeTime = (event: { value: string | string[] }) => {
-    const nextValue = Array.isArray(event.value) ? event.value[0] : event.value;
-    const date = new Date(nextValue);
-    const millisecondsSinceEpoch = date.getTime();
-    setTimelock(BigInt(millisecondsSinceEpoch));
-  };
 
   const handleDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(event.target.value);
@@ -44,6 +38,8 @@ const Create: NextPage = () => {
   };
 
   const handleGoalAmount = async () => {
+    setGoalAmountInt(ethToWei(BigInt(goalAmount)));
+    console.log("Goal amount", goalAmount);
     if (/^\d+$/.test(goalAmount)) {
       const date = new Date(Number(timelock));
       const timestring = date.toISOString();
@@ -58,8 +54,6 @@ const Create: NextPage = () => {
       const cid = await UploadJsonToIPFS(jsonData);
       console.log("cid", cid);
       setIpfsHash(cid);
-
-      setGoalAmountInt(ethToWei(goalAmount));
       setCount(count + 1);
     } else {
       console.log("not sending transaction");
@@ -96,14 +90,59 @@ const Create: NextPage = () => {
           <h1 className="text-xl">KICK-OFF YOUR CAMPAIGN</h1>
         </Box>
         <Box gap="medium" margin={{ horizontal: "medium", vertical: "small" }} align="start">
-        <Box align="start">
+          <Box align="start" width={{ min: "1000px" }}>
+            <h1>Project Title</h1>
+            <input
+              name="title"
+              value={title}
+              onChange={event => setTitle(event.target.value)}
+              style={{
+                width: "1000px",
+                padding: "8px",
+                border: "none",
+                outline: "none",
+                borderBottom: "2px solid #000",
+                resize: "none",
+                overflow: "hidden",
+                backgroundColor: "white",
+              }}
+            />          
+          </Box>
+          <Box align="start" width={{ min: "1000px" }}>
+            <h1>Project Description</h1>
+            <textarea
+              name="description"
+              value={description}
+              onChange={handleDescription}
+              style={{
+                width: "1000px",
+                padding: "8px",
+                border: "none",
+                outline: "none",
+                borderBottom: "2px solid #000",
+                wordWrap: "break-word",
+                resize: "none",
+                overflow: "hidden",
+                backgroundColor: "white",
+              }}
+              rows={Math.max(1, description.split("\n").length)}
+            />
+          </Box>
+          <Box align="start">
+            <h1>Goal Amount in $</h1>
+            <InputBase name="goalAmount" value={goalAmount} onChange={setGoalAmount} />
+            {error && <p className="text-red-600">Please enter a valid number</p>}
+          </Box>
+          <Box align="start">
             <h1>Club Name</h1>
             <select
               value={club}
               onChange={e => setClub(e.target.value)}
               style={{
-                width: "100%", // Set the width to 100% of the parent container
-                padding: "8px", // Add padding for better aesthetics
+                width: "100%",
+                padding: "8px",
+                backgroundColor: "white",
+                border: "1px solid black",
               }}
             >
               <option value="" disabled>
@@ -114,7 +153,7 @@ const Create: NextPage = () => {
                   key={clubKey}
                   value={clubKey}
                   style={{
-                    width: "100%", // Set the width of each option
+                    width: "100%",
                   }}
                 >
                   {clubKey}
@@ -123,42 +162,16 @@ const Create: NextPage = () => {
             </select>
           </Box>
           <Box align="start">
-            <h1>Project Title</h1>
-            <InputBase name="title" value={title} onChange={setTitle} />
-          </Box>
-          <Box align="start">
-            <h1>Goal Amount in $</h1>
-            <InputBase name="goalAmount" value={goalAmount} onChange={setGoalAmount} />
-            {error && <p className="text-red-600">Please enter a valid number</p>}
-          </Box>
-          <Box align="start">
             <h1>Timelock</h1>
             <DateInput
               format="mm/dd/yyyy"
               id="dateinput"
               name="dateinput"
-              onChange={event => {
-                changeTime(event);
+              onChange={({ value }) => {
+                const selectedDate = new Date(value);
+                const secondsFromEpoch = Math.floor(selectedDate.getTime() / 1000);
+                setTimelock(BigInt(secondsFromEpoch));
               }}
-            />
-          </Box>
-          <Box align="start" width={{ min: "1000px" }}>
-            <h1>Project Description</h1>
-            <textarea
-              name="description"
-              value={description}
-              onChange={e => handleDescription(e)}
-              style={{
-                width: "1000px",
-                padding: "8px",
-                border: "none",
-                outline: "none",
-                borderBottom: "1px solid #000",
-                wordWrap: "break-word",
-                resize: "none", // Disable textarea resizing
-                overflow: "hidden", // Hide the scrollbar
-              }}
-              rows={Math.max(1, description.split("\n").length)} // Adjust rows dynamically
             />
           </Box>
         </Box>

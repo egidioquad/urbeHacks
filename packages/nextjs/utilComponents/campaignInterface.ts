@@ -1,4 +1,5 @@
 export interface Campaign {
+  id: bigint;
   sender: string;
   ipfs: string;
   club: string;

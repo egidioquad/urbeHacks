@@ -8,7 +8,7 @@ export const Footer = () => {
   const { writeAsync } = useScaffoldContractWrite({
     contractName: "StableCoin",
     functionName: "mint",
-    args: [ethToWei("100")],
+    args: [ethToWei(BigInt(10000))],
     onBlockConfirmation: txnReceipt => {
       console.log("📦 Transaction blockHash", txnReceipt.blockHash);
     },
@@ -22,7 +22,7 @@ export const Footer = () => {
             <Button
               size="medium"
               primary
-              color="#a3e635"
+              color="#a6d55a"
               label="💸 Get USDT"
               onClick={() => writeAsync()}
               style={{ border: "3px solid #9BCF53", textAlign: "center" }}

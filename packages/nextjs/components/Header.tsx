@@ -9,6 +9,7 @@ import { Bars3Icon, BugAntIcon, StarIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
+import { weiToEth } from "~~/utils/convertEth";
 
 type HeaderMenuLink = {
   label: string;
@@ -72,19 +73,27 @@ export const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const account = useAccount();
-  const [token42, setToken42] = useState<bigint>(BigInt(0));
-
-  const { data: amount } = useScaffoldContractRead({
+  const [token42, setToken42] = useState<bigint>(0n);
+  const [usAmount, setUsdtAmount] = useState<bigint>(0n)
+  console.log("account: ", account.address);
+  const { data: tokenAmount } = useScaffoldContractRead({
     contractName: "Fundraising",
     functionName: "getFundToken",
     args: [account.address],
   });
 
+  const { data: USDTamount } = useScaffoldContractRead({
+    contractName: "StableCoin",
+    functionName: "balanceOf",
+    args: [account.address],
+  });
+
   useEffect(() => {
-    if (amount) {
-      setToken42(BigInt(amount));
-    }
-  }, [amount]);
+    if (tokenAmount)
+      setToken42(weiToEth(BigInt(tokenAmount)));
+    if (USDTamount) 
+      setUsdtAmount(weiToEth(BigInt(USDTamount)))
+  }, [tokenAmount, USDTamount]);
 
   useOutsideClick(
     burgerMenuRef,
@@ -129,7 +138,12 @@ export const Header = () => {
         </ul>
       </div>
       <div className="navbar-end flex-grow mr-4 items-center">
-        <h1 className="mr-4 mb-0">42Token Balance: {token42.toString()}</h1>
+        {account.address != undefined && (
+          <>
+            <h1 className="mr-4 mb-0">42Token Balance: {token42.toString()}</h1>
+            <h1 className="mr-4 mb-0">USDT Balance: {usAmount.toString()}$</h1>
+          </>
+        )}
         <RainbowKitCustomConnectButton />
         <FaucetButton />
       </div>

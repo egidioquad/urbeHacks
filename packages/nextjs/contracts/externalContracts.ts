@@ -13,7 +13,7 @@ const externalContracts = {
 const externalContracts = {
   1: {
     Fundraising: {
-      address: "0xb3423cb8aa4ac276b975ca3ab8e929f92d977bc4",
+      address: "0xf00A9373Cd54Fd060CD31B81c21611558aE352ec",
       abi: [
         {
           inputs: [

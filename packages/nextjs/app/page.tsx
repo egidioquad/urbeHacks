@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { Box, Button, Grid, Image } from "grommet";
 import { Grommet } from "grommet";
 import type { NextPage } from "next";
-import ClubImage from "~~/components/ClubImage";
-import ProjectCard from "~~/components/ProjectCard";
+import ClubImage from "~~/components/42-Fund/ClubImage";
+import ProjectCard from "~~/components/42-Fund/ProjectCard";
 import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 import { Campaign, ExtendedCampaign } from "~~/types/campaignInterface";
 import { GetFileFromIpfs } from "~~/utils/IPFS_Tools";
@@ -83,12 +83,12 @@ const HomePage: NextPage = () => {
           </Box>
         </Box>
       </Box>
-      <Box margin="medium">
+      <Box margin="medium" align="center">
         <Box align="center">
-          <h1 className="text-xl text-black">TOP CAMPAIGNS</h1>
+          <h1 className="text-xl text-white">TOP CAMPAIGNS</h1>
         </Box>
         <Box margin="medium" align="center">
-          <Grid columns={["1/3", "1/3", "1/3"]} gap="small">
+          <Grid columns={["1/3", "1/3", "1/3"]} gap="xsmall" width={{ max: "65%" }}>
             {topCampaigns && topCampaigns.length > 0 ? (
               topCampaigns.map((campaign: ExtendedCampaign, index: number) => (
                 <Box key={index}>
