@@ -1,6 +1,6 @@
-# 42Care - Decentralized Fundraising dApp for 42school Community
+# 42Care - Decentralized Fundraising dApp for 42school 
 
-Welcome to 42Care, a decentralized fundraising application tailored for the 42school community, developed during the urbe.eth Hackathon. Our goal is to support the essential scholastic clubs at 42school by empowering students through innovative blockchain technology.
+Welcome to 42Care, a decentralized fundraising application tailored for the 42school community, developed during the urbe.eth Bootcamp Hackathon. Our goal is to support the scholastic clubs at 42school by empowering students through innovative blockchain technology.
 
 ## Overview
 
