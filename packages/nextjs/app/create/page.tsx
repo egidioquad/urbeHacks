@@ -106,7 +106,7 @@ const Create: NextPage = () => {
                 overflow: "hidden",
                 backgroundColor: "white",
               }}
-            />          
+            />
           </Box>
           <Box align="start" width={{ min: "1000px" }}>
             <h1>Project Description</h1>

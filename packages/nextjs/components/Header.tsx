@@ -74,7 +74,7 @@ export const Header = () => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const account = useAccount();
   const [token42, setToken42] = useState<bigint>(0n);
-  const [usAmount, setUsdtAmount] = useState<bigint>(0n)
+  const [usAmount, setUsdtAmount] = useState<bigint>(0n);
   console.log("account: ", account.address);
   const { data: tokenAmount } = useScaffoldContractRead({
     contractName: "Fundraising",
@@ -89,10 +89,8 @@ export const Header = () => {
   });
 
   useEffect(() => {
-    if (tokenAmount)
-      setToken42(weiToEth(BigInt(tokenAmount)));
-    if (USDTamount) 
-      setUsdtAmount(weiToEth(BigInt(USDTamount)))
+    if (tokenAmount) setToken42(weiToEth(BigInt(tokenAmount)));
+    if (USDTamount) setUsdtAmount(weiToEth(BigInt(USDTamount)));
   }, [tokenAmount, USDTamount]);
 
   useOutsideClick(

@@ -57,7 +57,7 @@ const Projects: NextPage = () => {
           <h1>Loading...</h1>
         </Box>
       ) : (
-        <Grid columns={{ size: "medium" }} gap="small" >
+        <Grid columns={{ size: "medium" }} gap="small">
           {campaigns && campaigns.length > 0 ? (
             campaigns.map((campaign: Campaign, index: number) => (
               <Box key={index}>

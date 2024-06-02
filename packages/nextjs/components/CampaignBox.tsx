@@ -38,12 +38,7 @@ const CampaignBox: React.FC<CampaignBoxProps> = ({ campaign }) => {
 
   return (
     <Box className="text-xl text-black" pad="large" margin={{ horizontal: "medium" }} height="100%" width="80%">
-      <Grid
-        columns={['auto', 'medium']}
-        gap="medium"
-        width="full"
-        height="full"
-      >
+      <Grid columns={["auto", "medium"]} gap="medium" width="full" height="full">
         <Box
           align="start"
           justify="start"

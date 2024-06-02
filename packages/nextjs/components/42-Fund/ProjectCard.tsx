@@ -27,11 +27,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ campaign }) => {
               }}
             />
           </Box>
-          <Box align="center" pad="small" style={{ height: '60px' }}>
+          <Box align="center" pad="small" style={{ height: "60px" }}>
             <h1>{campaign.title}</h1>
           </Box>
 
-          <Box pad={{ bottom: "medium", horizontal: "medium" }} >
+          <Box pad={{ bottom: "medium", horizontal: "medium" }}>
             <Box align="center">
               <Meter
                 background="#cbd5e1"
