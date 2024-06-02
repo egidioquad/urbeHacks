@@ -58,3 +58,7 @@ To set up and run this project locally, follow these steps:
    ```bash
    yarn start
    ```
+
+## Video Explanation
+
+For a detailed explanation of the project in Italian, please watch this Loom video: [Loom Video](https://www.loom.com/share/05afdf2061ec4e469854202658be9a4c?sid=0407511a-4ef9-4db8-9a95-aa9ccebc2709)
